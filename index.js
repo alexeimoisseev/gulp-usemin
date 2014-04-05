@@ -41,13 +41,13 @@ module.exports = function(options) {
 				paths.push(filePath);
 			});
 
-		for (var i = 0, l = paths.length; i < l; ++i) {
-			var filepath = glob.sync(paths[i])[0];
+        paths.forEach(function(path) {
+			var filepath = glob.sync(path)[0];
 			files.push(new gutil.File({
 				path: filepath,
 				contents: fs.readFileSync(filepath)
 			}));
-		}
+		});
 
 		return files;
 	}
